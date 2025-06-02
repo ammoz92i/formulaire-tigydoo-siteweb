@@ -1,19 +1,20 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Formulaire Tigydoo</title>
-  <style>
-    body {
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Formulaire Tigydoo</title>
+<style>body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: #f5f5f5;
+      background: #f0f4f8;
     }
 
     header {
-      background: #5c6bc0;
+      background: #0054a6;
       color: white;
       padding: 1rem;
       text-align: center;
@@ -47,7 +48,7 @@
     }
 
     button {
-      background: #5c6bc0;
+      background: #0054a6;
       color: white;
       padding: 0.8rem 1.2rem;
       border: none;
@@ -71,71 +72,142 @@
         font-size: 1.4rem;
       }
     }
-  </style>
+
+@media (max-width: 768px) {
+  form {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  input, select, textarea {
+    font-size: 1rem;
+  }
+  button {
+    width: 100%;
+  }
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1>Formulaire de Contact Tigydoo</h1>
-  </header>
-
-  <form id="contact-form" action="https://script.google.com/macros/s/AKfycbwFTwYVjXMYxfqbJj6gk2CN0VrZJVMf48PRSeZ0kLUdn8TRDXuHby8x7gg1nQhcy4HL/exec" method="POST">
-    <div class="form-group">
-      <label for="nom">Nom :</label>
-      <input type="text" id="nom" name="nom" required />
-    </div>
-
-    <div class="form-group">
-      <label for="email">Email :</label>
-      <input type="email" id="email" name="email" required />
-    </div>
-
-    <div class="form-group">
-      <label for="telephone">Téléphone :</label>
-      <input type="tel" id="telephone" name="telephone" placeholder="+1 (450) 555-0220" pattern="\+1\s?\(\d{3}\)\s?\d{3}-\d{4}" required />
-    </div>
-
-    <div class="form-group">
-      <label for="adresse">Adresse (Canada, QC) :</label>
-      <input type="text" id="adresse" name="adresse" required placeholder="123 Rue Exemple, Montréal, QC, Canada" />
-    </div>
-
-    <div class="form-group">
-      <label for="services">Services souhaités :</label>
-      <select id="services" name="services" required>
-        <option value="">-- Choisir un service --</option>
-        <option value="FORFAIT CELLULAIRE">FORFAIT CELLULAIRE</option>
-        <option value="TRIO">TRIO</option>
-        <option value="DUO TV + INT">DUO TV + INT</option>
-        <option value="DUO INT + TPC">DUO INT + TPC</option>
-        <option value="TOUS">TOUS</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="message">Message :</label>
-      <textarea id="message" name="message" rows="4"></textarea>
-    </div>
-
-    <button type="submit">Envoyer</button>
-  </form>
-
-  <script>
-    document.getElementById("contact-form").addEventListener("submit", function(e) {
+<header>
+<h1>Formulaire de Contact Tigydoo</h1>
+</header>
+<form action="https://script.google.com/macros/s/AKfycbwFTwYVjXMYxfqbJj6gk2CN0VrZJVMf48PRSeZ0kLUdn8TRDXuHby8x7gg1nQhcy4HL/exec" id="contact-form" method="POST">
+<div class="form-group">
+<label for="nom">Nom complet<span class="required">*</span></label>
+<input id="nom" name="nom" placeholder="Votre nom" required="" type="text"/>
+</div>
+<div class="form-group">
+<label for="email">Adresse email<span class="required">✉</span></label>
+<span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: gray;">@</span>
+<div style="display: flex; align-items: center;">
+<span style="padding: 0.8rem; background-color: #e0e7ef; border: 1px solid #ccc; border-right: none; border-radius: 5px 0 0 5px;">@</span>
+<input id="email" name="email" placeholder="exemple@domaine.com" required="" style="flex: 1; border-radius: 0 5px 5px 0;" type="email"/>
+</div>
+</div>
+<div class="form-group">
+<label for="telephone">Cellulaire<span class="required">*</span></label>
+<div style="display: flex; align-items: center;">
+<span style="padding: 0.8rem; background-color: #e0e7ef; border: 1px solid #ccc; border-right: none; border-radius: 5px 0 0 5px;">+1</span>
+<input id="telephone" name="telephone" pattern="\(\d{3}\) \d{3}-\d{4}" placeholder="(000) 000-0000" required="" style="flex: 1; border-radius: 0 5px 5px 0;" type="tel"/>
+</div>
+<small>Format : (450) 123-4567</small>
+</div>
+<div class="form-group">
+<label for="porte">N° de porte</label>
+<input id="porte" name="porte" placeholder="123" type="text"/>
+</div>
+<div class="form-group">
+<label for="type_voie">Adresse</label>
+<select id="type_voie" name="type_voie" required="">
+<option value="">-- Sélectionnez le type de voie --</option>
+<option value="Rue">Rue</option>
+<option value="Place">Place</option>
+<option value="Boulevard">Boulevard</option>
+<option value="Avenue">Avenue</option>
+<option value="Rang">Rang</option>
+</select>
+</div>
+<div class="form-group" id="nom_voie_group" style="display: none;">
+<label for="nom_voie">Nom de la voie sélectionnée</label>
+<input id="nom_voie" name="nom_voie" placeholder="ex: Sainte-Catherine" type="text"/>
+</div>
+<div class="form-group">
+<label for="ville">Ville</label>
+<input id="ville" name="ville" type="text"/>
+</div>
+<div class="form-group">
+<label for="province">Province</label>
+<select id="province" name="province" required="" style="background-color: #e0e7ef;">
+<option value="">-- Sélectionnez une province --</option>
+<option value="AB">Alberta</option>
+<option value="BC">Colombie-Britannique</option>
+<option value="MB">Manitoba</option>
+<option value="NB">Nouveau-Brunswick</option>
+<option value="NL">Terre-Neuve-et-Labrador</option>
+<option value="NS">Nouvelle-Écosse</option>
+<option value="NT">Territoires du Nord-Ouest</option>
+<option value="NU">Nunavut</option>
+<option value="ON">Ontario</option>
+<option value="PE">Île-du-Prince-Édouard</option>
+<option value="QC">Québec</option>
+<option value="SK">Saskatchewan</option>
+<option value="YT">Yukon</option>
+</select>
+</div>
+<div class="form-group">
+<label for="code_postal">Code postal</label>
+<input id="code_postal" name="code_postal" placeholder="A1A 1A1" type="text"/>
+</div>
+<div class="form-group">
+<label for="services">Services souhaités</label>
+<select id="services" name="services" required="" style="background-color: #f9f9fb; padding: 0.6rem; border-radius: 5px; border: 1px solid #ccc;">
+<option value="">-- Choisir un service --</option>
+<option value="FORFAIT CELLULAIRE">FORFAIT CELLULAIRE</option>
+<option value="TRIO">TRIO</option>
+<option value="DUO TV + INT">DUO TV + INT</option>
+<option value="DUO INT + TPC">DUO INT + TPC</option>
+<option value="TOUS">TOUS</option>
+</select>
+</div>
+</form>
+<script>
+    document.getElementById("contact-form").addEventListener("submit", function (e) {
       e.preventDefault();
       const form = e.target;
+      const data = new FormData(form);
       fetch(form.action, {
         method: "POST",
-        body: new FormData(form)
-      }).then(response => {
-        if (response.ok) {
-          window.location.href = "merci.html";
-        } else {
-          alert("Erreur lors de l'envoi. Veuillez réessayer.");
-        }
-      }).catch(() => {
-        alert("Erreur lors de l'envoi. Veuillez réessayer.");
-      });
+        body: data,
+      })
+      .then(() => {
+        form.reset();
+        window.location.href = "merci.html";
+      })
+      .catch(err => alert("Erreur d'envoi : " + err));
     });
   </script>
+<script>
+  document.getElementById('telephone').addEventListener('input', function (e) {
+    let x = e.target.value.replace(/\D/g, '').substring(0, 10);
+    let formatted = '';
+    if (x.length > 0) formatted += '(' + x.substring(0, 3);
+    if (x.length >= 4) formatted += ') ' + x.substring(3, 6);
+    if (x.length >= 7) formatted += '-' + x.substring(6, 10);
+    e.target.value = formatted;
+  });
+</script>
+<script>
+document.getElementById('type_voie').addEventListener('change', function () {
+  var nomVoieGroup = document.getElementById('nom_voie_group');
+  if (this.value) {
+    nomVoieGroup.style.display = 'block';
+  } else {
+    nomVoieGroup.style.display = 'none';
+  }
+});
+</script>
 </body>
 </html>
